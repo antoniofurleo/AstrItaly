@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS messagecount;
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    score REAL DEFAULT 0.0,
+    question110 BOOLEAN DEFAULT 0,
+    question111 BOOLEAN DEFAULT 0,
+    question130 BOOLEAN DEFAULT 0,
+    question131 BOOLEAN DEFAULT 0
+);

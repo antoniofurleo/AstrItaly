@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A site to help you learn new things about SDG trought high school mathematics">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <title>AstrItaly</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+        .navbar-title {
+            font-size: 36px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .content {
+            background-color: #cfebfe;
+            border: 1px solid #12476b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        .content1 {
+            background-color: #e4f4ff;
+            border: 1px solid #234f36;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 0px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        .content2 {
+            background-color: #d4ebff;
+            border: 1px solid #234f36;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 45px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+        }
+        .page-title {
+            border: 1px solid #201e40;
+            text-align: center;
+            font-size: 24pt;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: 200px;
+            color: black;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            if ($(window).width() < 768) {
+                $('.mobile').remove();
+        }
+        });
+    </script>
+</head>
+<body style="background-color: white;">
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark fixed-top" style="height: 140px;">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="AstrItaly icon." width="100" height="100" class="d-inline-block align-text-top mobile" id="mobile" style="border-radius: 50%;">
+                    <span class="navbar-title">SDG 11 <span class="mobile">- Building Sustainable Cities with Math</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/leaderboard">Leaderboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/sdg13">Climate Action with Math | SDG 13</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled">Future lessons</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-control bg-transparent" style="border-color: transparent;">
+                        <div class="card bg-transparent" style="padding: 8px 10px; border-color: white;">
+                          <form class="d-flex">
+                            <div class="card_load me-2" style="background-image: url(https://www.amaroma.it/images-new/nhp/ico/user-grey.png);"></div>
+                            <div class="m-3" style="font-size: 18px; color:whitesmoke;"><div style="color:rgb(156, 193, 235); display: inline-block;">User:</div> {{ user }}<div style="color:rgb(176, 176, 176); display: inline-block;">#{{ session_id }}</div><a class="logout" href="/logout" alt="Logout" style="position: absolute; right: 20px; color:rgb(176, 176, 176); display: inline-block;">Logout</a></div>
+                          </form>
+                      </div>
+                      <br>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div style="margin-top: 200px; position: relative; overflow: hidden; aspect-ratio: 1920/1080"><iframe src="https://share.synthesia.io/embeds/videos/ceeb7759-6e53-46be-bde9-dd0a7511673e" loading="lazy" title="Synthesia video player - Math for Sustainable Cities" allowfullscreen allow="encrypted-media; fullscreen;" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;"></iframe></div>
+        <div class="content1">
+          <p style="color:black; text-align: center;"><b>Video Description:</b><br>
+            In this 3-minute educational video, high school students are introduced to the role of mathematics in promoting Sustainable Development Goal 11: Sustainable Cities and Communities. By leveraging real NASA Earth observation data, the video demonstrates how concepts like geometry, area, and data analysis are used to monitor urban growth, analyze air pollution, and design more sustainable cities. Students will learn how satellite data helps calculate key factors such as population density, green space, and urban expansion, providing them with tools to assess and support urban sustainability efforts.</p>
+        </div>
+        <div class="content2">
+                <div class="form-group">
+                    <label for="question1"><b>How does NASA Earth observation data help cities work towards achieving SDG 11?</b></label>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question1" id="answer1A" value="A">
+                            <label class="form-check-label" for="answer1A">
+                                A. By predicting natural disasters
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question1" id="answer1B" value="B">
+                            <label class="form-check-label" for="answer1B">
+                                B. By analyzing population density, air pollution, and urban growth
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question1" id="answer1C" value="C">
+                            <label class="form-check-label" for="answer1C">
+                                C. By tracking global economic performance
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question1" id="answer1D" value="D">
+                            <label class="form-check-label" for="answer1D">
+                                D. By providing data on outer space exploration
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" style="margin-top:10px;" class="btn btn-primary" id="checkAnswer">Check</button>
+                <div class="result" id="result" style="margin-top: 10px;"></div>
+        </div>
+        <div class="content2">
+        <div class="form-group">
+            <label for="question2"><b>What mathematical concept is used to calculate the area of green spaces in urban environments?</b></label>
+            <div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="answer2A" value="A">
+                    <label class="form-check-label" for="answer2A">
+                        A. Algebra
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="answer2B" value="B">
+                    <label class="form-check-label" for="answer2B">
+                        B. Probability
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="answer2C" value="C">
+                    <label class="form-check-label" for="answer2C">
+                        C. Geometry
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question2" id="answer2D" value="D">
+                    <label class="form-check-label" for="answer2D">
+                        D. Trigonometry
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button type="button" style="margin-top:10px;" class="btn btn-primary" id="checkAnswer1">Check</button>
+        <div class="result" id="result1" style="margin-top: 10px;"></div>
+    </div>
+    <div class="content1" style="color:black;margin-top: 50px; display: flex; flex-direction: column; align-items: center;">
+        <h3>Further information:</h3>
+        <p>Average share of forest, percentage of land in cities and urban areas (%) for the periods 1990, 2000, 2010 and 2020.</p>
+        <img src="{{ url_for('static', filename='map11.png') }}" style="max-width: 50%; height: auto; display: block;">
+        <img src="{{ url_for('static', filename='graph11.png') }}" style="margin-top: 30px; max-width: 50%; height: auto; display: block;">
+    </div>
+    </div>
+    
+</div>
+    <script>
+        document.getElementById('checkAnswer').addEventListener('click', function() {
+            const selectedAnswer = document.querySelector('input[name="question1"]:checked');
+            const resultDiv = document.getElementById('result');
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<div class="alert alert-warning">Please select an answer!</div>';
+                return;
+            }
+            if (selectedAnswer.value === 'B') {
+                resultDiv.innerHTML = '<div class="alert alert-success">Correct! Well done.</div>';
+                fetch('/question110')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data); 
+                      
+                    })
+            } else {
+                resultDiv.innerHTML = '<div class="alert alert-danger">Incorrect.</div>';
+            }
+        });
+        document.getElementById('checkAnswer1').addEventListener('click', function() {
+            const selectedAnswer = document.querySelector('input[name="question2"]:checked');
+            const resultDiv = document.getElementById('result1');
+            
+            if (!selectedAnswer) {
+                resultDiv.innerHTML = '<div class="alert alert-warning">Please select an answer!</div>';
+                return;
+            }
+            
+            if (selectedAnswer.value === 'C') {
+                resultDiv.innerHTML = '<div class="alert alert-success">Correct! Well done.</div>';
+                fetch('/question111')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data); 
+                      
+                    })
+            } else {
+                resultDiv.innerHTML = '<div class="alert alert-danger">Incorrect.</div>';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <footer class="text-center mt-4">
+        <p style="color:black;">&copy; 2024 AstrItaly. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
